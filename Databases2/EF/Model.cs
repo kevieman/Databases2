@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace Databases2
+namespace Databases2.EF
 {
     class NetflaxContext : DbContext
     {

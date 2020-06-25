@@ -1,4 +1,5 @@
 ﻿using Databases2.ADO;
+using Databases2.EF;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,11 +10,12 @@ namespace Databases2
 {
     class ADOExec
     {
-        string connectionString;
-        FilmSerie filmSerie;
-        FilmSerie newFilmSerie;
+        private readonly string connectionString;
+        private readonly FilmSerie filmSerie;
+        private readonly FilmSerie newFilmSerie;
+        private readonly long totalMs;
 
-        public ADOExec( FilmSerie filmSerie, FilmSerie newFilmSerie)
+        public ADOExec(int[] rowsArray, FilmSerie filmSerie, FilmSerie newFilmSerie)
         {
             ADOInit init = new ADOInit();
             init.Initialize();
@@ -22,10 +24,8 @@ namespace Databases2
             this.filmSerie = filmSerie;
             this.newFilmSerie = newFilmSerie;
 
-            int[] rowsArray = {10, 1000, 100000};
-            //int[] rowsArray = {100};
             int idCounter = 0;
-            long totalMs = 0;
+            totalMs = 0;
 
             foreach (int rows in rowsArray)
             {
@@ -57,6 +57,11 @@ namespace Databases2
             Console.WriteLine();
             Console.WriteLine("Total of {0}ms", totalMs);
 
+        }
+
+        public long GetResult()
+        {
+            return totalMs;
         }
 
         // Executes insert statements in the Profiles table returns the time it took in ms

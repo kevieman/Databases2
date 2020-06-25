@@ -96,7 +96,7 @@ namespace Databases2.ADO
                     Console.WriteLine("Create Tables");
                     createTablesCommand.ExecuteScalar();
                 }
-                catch (Exception e)
+                catch
                 {
                     Console.WriteLine("Tables already exists");
                 }
